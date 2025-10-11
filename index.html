@@ -3,209 +3,244 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lawgify - AI for Law Exam Prep</title>
+<title>Lawgify - CLAT 2025 Demo Quiz</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  /* ===== Base Styles ===== */
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(160deg, #2c0051, #3a006f, #4b007f);
-    color: #fff;
-    scroll-behavior: smooth;
-  }
-  a { text-decoration: none; color: inherit; }
+    body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, #2c0051, #3a006f);
+        color: #fff;
+        scroll-behavior: smooth;
+    }
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 3rem;
+        background-color: #3a006f;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+    nav .logo { font-weight: 700; font-size: 1.5rem; color: #ffcc00; }
+    nav ul { list-style: none; display: flex; gap: 2rem; margin:0; padding:0; }
+    nav ul li a { text-decoration: none; color: #fff; font-weight: 600; transition: color 0.3s; }
+    nav ul li a:hover { color: #ffcc00; }
 
-  /* ===== Navbar ===== */
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 3rem;
-    background-color: rgba(58,0,111,0.95);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    backdrop-filter: blur(10px);
-  }
-  .logo { font-size: 1.8rem; font-weight: 700; color: #ffcc00; }
-  nav ul { display: flex; gap: 2rem; list-style: none; }
-  nav ul li a {
-    font-weight: 600;
-    transition: color 0.3s;
-  }
-  nav ul li a:hover { color: #ffdd33; }
+    header { text-align: center; padding: 4rem 2rem; }
+    header h1 { font-size: 2.5rem; color: #ffcc00; margin-bottom:1rem; }
+    header p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; }
 
-  /* ===== Sections ===== */
-  section { padding: 6rem 2rem; max-width: 1200px; margin: auto; opacity: 0; transform: translateY(40px); }
-  section.show { opacity: 1; transform: translateY(0); transition: all 0.8s ease-out; }
+    .section { max-width: 900px; margin: 3rem auto; padding: 0 1rem; }
+    .section h2 { text-align:center; font-size:2rem; color:#ffcc00; margin-bottom:2rem; }
 
-  header { text-align: center; padding-top: 8rem; }
-  header h1 { font-size: 3rem; color: #ffcc00; margin-bottom: 1rem; }
-  header p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; line-height: 1.6; }
+    .pyq-card {
+        background: linear-gradient(145deg, #4b007f, #5e0090);
+        border-radius: 12px;
+        padding: 1.5rem 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .pyq-card:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(0,0,0,0.35); }
 
-  /* ===== Exam Cards ===== */
-  .exam-cards, .pyq-cards { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-  .exam-card, .pyq-card {
-    background: rgba(58,0,111,0.8);
-    padding: 2rem;
-    border-radius: 12px;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .exam-card:hover, .pyq-card:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(0,0,0,0.5); }
-  .exam-logo { width: 60px; margin-bottom: 1rem; }
-  .exam-card button, .pyq-card button { margin-top: 1rem; padding: 0.5rem 1rem; border-radius: 6px; border: none; font-weight: 600; cursor: not-allowed; background-color: #ffcc00; color: #3a006f; }
+    .pyq-card p { font-weight: 600; margin-bottom: 1rem; }
+    .pyq-card ul { list-style:none; padding:0; }
+    .pyq-card ul li {
+        margin: 0.5rem 0;
+        padding: 0.5rem 0.8rem;
+        border-radius: 6px;
+        cursor: pointer;
+        background-color: rgba(255,255,255,0.1);
+        transition: all 0.3s;
+    }
+    .pyq-card ul li:hover { background-color: rgba(255,204,0,0.2); }
+    .correct { background-color: #4CAF50 !important; color: #fff; }
+    .wrong { background-color: #f44336 !important; color: #fff; }
 
-  /* ===== Quiz Options ===== */
-  .pyq-card ul { list-style: none; margin-top: 1rem; text-align: left; }
-  .pyq-card li {
-    padding: 0.5rem 1rem;
-    margin-bottom: 0.5rem;
-    border-radius: 6px;
-    background: rgba(255,255,255,0.05);
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-  .pyq-card li:hover { background: rgba(255,255,255,0.15); }
-  .pyq-card li.correct { background: #0f0a; color: #0f0; font-weight: 600; }
-  .pyq-card li.wrong { background: #300000; color: #ff4444; font-weight: 600; }
+    footer { text-align:center; padding:2rem; background-color:#3a006f; }
+    .tagline { color:#ffcc00; font-weight:600; }
 
-  /* ===== Machine Learning Section ===== */
-  .ml-section { margin-top: 1rem; padding-left: 1.2rem; }
-  .ml-section li { margin-bottom: 0.7rem; }
-
-  /* ===== Footer ===== */
-  footer { text-align: center; padding: 2rem; background-color: rgba(58,0,111,0.9); }
-  .tagline { color: #ffcc00; font-weight: 600; }
-
+    ul.ml-section { margin-left:1.5rem; }
 </style>
 </head>
 <body>
 
 <!-- Navbar -->
 <nav>
-  <div class="logo">Lawgify</div>
-  <ul>
-    <li><a href="#home">Home</a></li>
-    <li><a href="#exams">Exams</a></li>
-    <li><a href="#demo">Demo</a></li>
-    <li><a href="#about">About</a></li>
-  </ul>
+    <div class="logo">Lawgify</div>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#quiz">Demo Quiz</a></li>
+        <li><a href="#about">About Us</a></li>
+    </ul>
 </nav>
 
 <!-- Header -->
 <header id="home">
-  <h1>Lawgify</h1>
-  <p><span class="tagline">Using AI to make law preparation easier</span>. Consolidating PYQs, solutions, and AI-driven insights for law aspirants in one interactive platform.</p>
+    <h1>Lawgify</h1>
+    <p><span class="tagline">Using AI to make law preparation easier</span>. Try our interactive CLAT 2025 demo quiz below!</p>
 </header>
 
-<!-- Exams Section -->
-<section id="exams">
-  <h2>Law Exams</h2>
-  <div class="exam-cards">
-    <div class="exam-card">
-      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b3/National_Law_School_of_India_University_Logo.svg/815px-National_Law_School_of_India_University_Logo.svg.png" alt="CLAT Logo" class="exam-logo">
-      <h3>CLAT UG</h3>
-      <p>Year-wise PYQs, solutions, and demo content</p>
-      <button disabled>Coming Soon</button>
-    </div>
-    <div class="exam-card">
-      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/1b/Indian_Law_Institute_Logo.svg/1136px-Indian_Law_Institute_Logo.svg.png" alt="CLAT PG Logo" class="exam-logo">
-      <h3>CLAT PG</h3>
-      <p>Year-wise PYQs, solutions, and demo content</p>
-      <button disabled>Coming Soon</button>
-    </div>
-    <div class="exam-card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Ministry_of_Law_and_Justice.svg" alt="AILET Logo" class="exam-logo">
-      <h3>AILET</h3>
-      <p>Year-wise PYQs, solutions, and demo content</p>
-      <button disabled>Coming Soon</button>
-    </div>
-    <div class="exam-card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Insignia_of_the_Supreme_Court_of_India.svg/1024px-Insignia_of_the_Supreme_Court_of_India.svg.png" alt="State Judicial Services Logo" class="exam-logo">
-      <h3>State Judicial Services</h3>
-      <p>Year-wise PYQs, solutions, and demo content</p>
-      <button disabled>Coming Soon</button>
-    </div>
-  </div>
-</section>
+<!-- Quiz Section -->
+<section id="quiz" class="section">
+    <h2>CLAT 2025 Demo Questions</h2>
 
-<!-- Demo Quiz Section -->
-<section id="demo">
-  <h2>CLAT 2025 Demo Quiz</h2>
-  <div class="pyq-cards">
-    <!-- Example PYQ Card -->
+    <!-- Question 1 -->
     <div class="pyq-card" data-answer="B">
-      <h3>Q1. Which article guarantees equality before law?</h3>
-      <ul>
-        <li data-option="A">Article 14A</li>
-        <li data-option="B">Article 14</li>
-        <li data-option="C">Article 15</li>
-        <li data-option="D">Article 16</li>
-      </ul>
+        <p>1. Which word is closest in meaning to "Alleviate"?</p>
+        <ul>
+            <li data-option="A">Increase</li>
+            <li data-option="B">Relieve</li>
+            <li data-option="C">Complicate</li>
+            <li data-option="D">Destroy</li>
+        </ul>
     </div>
-    <!-- You can add 9 more questions in same structure -->
-  </div>
+
+    <!-- Question 2 -->
+    <div class="pyq-card" data-answer="C">
+        <p>2. The Constitution of India was adopted in the year?</p>
+        <ul>
+            <li data-option="A">1945</li>
+            <li data-option="B">1947</li>
+            <li data-option="C">1950</li>
+            <li data-option="D">1952</li>
+        </ul>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="pyq-card" data-answer="D">
+        <p>3. Which organ is responsible for interpreting the Constitution?</p>
+        <ul>
+            <li data-option="A">Parliament</li>
+            <li data-option="B">President</li>
+            <li data-option="C">Supreme Court Registry</li>
+            <li data-option="D">Supreme Court</li>
+        </ul>
+    </div>
+
+    <!-- Question 4 -->
+    <div class="pyq-card" data-answer="A">
+        <p>4. Fundamental Rights are guaranteed under which part of the Constitution?</p>
+        <ul>
+            <li data-option="A">Part III</li>
+            <li data-option="B">Part II</li>
+            <li data-option="C">Part IV</li>
+            <li data-option="D">Part V</li>
+        </ul>
+    </div>
+
+    <!-- Question 5 -->
+    <div class="pyq-card" data-answer="B">
+        <p>5. Which of the following is NOT a writ under Article 32?</p>
+        <ul>
+            <li data-option="A">Habeas Corpus</li>
+            <li data-option="B">Summons</li>
+            <li data-option="C">Mandamus</li>
+            <li data-option="D">Certiorari</li>
+        </ul>
+    </div>
+
+    <!-- Question 6 -->
+    <div class="pyq-card" data-answer="C">
+        <p>6. The Directive Principles are mentioned in which part of Constitution?</p>
+        <ul>
+            <li data-option="A">Part III</li>
+            <li data-option="B">Part V</li>
+            <li data-option="C">Part IV</li>
+            <li data-option="D">Part VI</li>
+        </ul>
+    </div>
+
+    <!-- Question 7 -->
+    <div class="pyq-card" data-answer="D">
+        <p>7. Who appoints the Chief Justice of India?</p>
+        <ul>
+            <li data-option="A">Parliament</li>
+            <li data-option="B">President with PM advice</li>
+            <li data-option="C">President only</li>
+            <li data-option="D">President after consultation with judges</li>
+        </ul>
+    </div>
+
+    <!-- Question 8 -->
+    <div class="pyq-card" data-answer="A">
+        <p>8. Which is the largest organ of the United Nations?</p>
+        <ul>
+            <li data-option="A">General Assembly</li>
+            <li data-option="B">Security Council</li>
+            <li data-option="C">Secretariat</li>
+            <li data-option="D">Economic and Social Council</li>
+        </ul>
+    </div>
+
+    <!-- Question 9 -->
+    <div class="pyq-card" data-answer="C">
+        <p>9. Right to Constitutional Remedies was added by which amendment?</p>
+        <ul>
+            <li data-option="A">42nd</li>
+            <li data-option="B">44th</li>
+            <li data-option="C">24th</li>
+            <li data-option="D">61st</li>
+        </ul>
+    </div>
+
+    <!-- Question 10 -->
+    <div class="pyq-card" data-answer="B">
+        <p>10. Which article deals with equality before law?</p
+<ul>
+            <li data-option="A">Article 14A</li>
+            <li data-option="B">Article 14</li>
+            <li data-option="C">Article 15</li>
+            <li data-option="D">Article 16</li>
+        </ul>
+    </div>
 </section>
 
 <!-- Machine Learning Section -->
-<section id="about">
-  <h2>How Lawgify Uses AI & Machine Learning</h2>
-  <ul class="ml-section">
-    <li>Automatically extracts and categorizes previous year questions.</li>
-    <li>Provides instant answer validation and explanations.</li>
-    <li>Tracks student progress and adapts future questions.</li>
-    <li>Generates personalized study plans for efficient prep.</li>
-  </ul>
-  <p>Coming soon: Advanced predictive analytics and AI tutors to make law prep seamless.</p>
+<section id="about" class="section">
+    <h2>How Lawgify Uses AI & Machine Learning</h2>
+    <p>
+        Lawgify leverages advanced machine learning models to:
+    </p>
+    <ul class="ml-section">
+        <li>Automatically extract previous year questions and categorize them by topic and difficulty.</li>
+        <li>Provide instant answer validation and detailed explanations for each question.</li>
+        <li>Track student progress and adapt future questions to improve weak areas using AI-driven insights.</li>
+        <li>Create personalized study plans for law aspirants to optimize preparation time.</li>
+    </ul>
+    <p>Coming soon: Integration of predictive analytics and personalized AI tutors to make law preparation more efficient and effective.</p>
 </section>
 
 <!-- Footer -->
 <footer>
-  &copy; 2025 Lawgify. <span class="tagline">Using AI to make law preparation easier</span>
+    &copy; 2025 Lawgify. <span class="tagline">Using AI to make law preparation easier</span>
 </footer>
 
-<!-- JS for animations & interactive quiz -->
+<!-- Interactive Quiz JS -->
 <script>
-  // Scroll animations
-<script>
-  // ===== Scroll Reveal for Sections =====
-  const sections = document.querySelectorAll('section');
-  const revealSection = () => {
-    sections.forEach(sec => {
-      const top = sec.getBoundingClientRect().top;
-      const windowHeight = window.innerHeight;
-      if (top < windowHeight - 100) {
-        sec.classList.add('show');
-      }
+    const cards = document.querySelectorAll('.pyq-card');
+    cards.forEach(card => {
+        const options = card.querySelectorAll('li');
+        const correct = card.dataset.answer;
+        options.forEach(option => {
+            option.addEventListener('click', () => {
+                if(option.dataset.option === correct){
+                    option.classList.add('correct');
+                } else {
+                    option.classList.add('wrong');
+                    // Highlight the correct answer
+                    options.forEach(o => {
+                        if(o.dataset.option === correct) o.classList.add('correct');
+                    });
+                }
+                // Disable all options after one click
+                options.forEach(o => o.style.pointerEvents = 'none');
+            });
+        });
     });
-  };
-  window.addEventListener('scroll', revealSection);
-  window.addEventListener('load', revealSection);
-
-  // ===== Quiz Interactivity =====
-  const pyqCards = document.querySelectorAll('.pyq-card');
-  pyqCards.forEach(card => {
-    const options = card.querySelectorAll('li');
-    const correctAnswer = card.dataset.answer;
-
-    options.forEach(option => {
-      option.addEventListener('click', () => {
-        if(option.dataset.option === correctAnswer){
-          option.classList.add('correct');
-        } else {
-          option.classList.add('wrong');
-          // Highlight correct answer too
-          options.forEach(o => {
-            if(o.dataset.option === correctAnswer) {
-              o.classList.add('correct');
-            }
-          });
-        }
-        // Disable all options after selection
-        options.forEach(o => o.style.pointerEvents = 'none');
-      });
-    });
-  });
 </script>
+
+</body>
+</html>
