@@ -35,6 +35,53 @@
     .section { max-width: 900px; margin: 3rem auto; padding: 0 1rem; }
     .section h2 { text-align:center; font-size:2rem; color:#ffcc00; margin-bottom:2rem; }
 
+/* Exam cards */
+.exam-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+.exam-card {
+    background: linear-gradient(145deg, #3a006f, #4b007f);
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.exam-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+}
+
+.exam-card h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+}
+
+.exam-card p {
+    font-size: 1rem;
+    color: #cccccc;
+}
+
+.exam-logo {
+    width: 70px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.exam-card button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #ffcc00;
+    color: #3a006f;
+    font-weight: 600;
+    cursor: not-allowed;
+    transition: background 0.3s;
+}
+
+
     .pyq-card {
         background: linear-gradient(145deg, #4b007f, #5e0090);
         border-radius: 12px;
