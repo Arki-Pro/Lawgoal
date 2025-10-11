@@ -1,121 +1,317 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lawgify - AI for Law Exam Prep</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-    /* Global Styles */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; background: #2c0051; color: #fff; scroll-behavior: smooth; }
-    a { text-decoration: none; color: inherit; }
-
-    /* Navbar */
-    nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 3rem; background: #3a006f; position: sticky; top: 0; z-index: 100; }
-    .logo { font-weight: 700; font-size: 1.6rem; color: #ffcc00; letter-spacing: 1px; }
-    nav ul { display: flex; list-style: none; gap: 2rem; }
-    nav ul li a { font-weight: 600; transition: 0.3s; }
-    nav ul li a:hover { color: #ffcc00; }
-
-    /* Header */
-    header { text-align: center; padding: 6rem 2rem 4rem 2rem; animation: fadeIn 1.2s ease forwards; }
-    header h1 { font-size: 3rem; margin-bottom: 1rem; color: #ffcc00; }
-    header p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; line-height: 1.6; }
-    .tagline { color: #ffcc00; font-weight: 600; }
-
-    /* Sections */
-    section { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; opacity: 0; transform: translateY(40px); animation: fadeUp 1s forwards; }
-    section:nth-of-type(odd) { animation-delay: 0.2s; }
-    section:nth-of-type(even) { animation-delay: 0.4s; }
-    section h2 { text-align: center; font-size: 2.5rem; margin-bottom: 2.5rem; color: #ffcc00; }
-
-    /* Exam Cards */
-    .exam-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-    .exam-card { background: #3a006f; border-radius: 16px; padding: 2rem 1.5rem; text-align: center; transition: transform 0.4s, box-shadow 0.4s; opacity: 0; animation: fadeInCard 0.8s forwards; }
-    .exam-card:nth-child(1) { animation-delay: 0.2s; }
-    .exam-card:nth-child(2) { animation-delay: 0.4s; }
-    .exam-card:nth-child(3) { animation-delay: 0.6s; }
-    .exam-card:nth-child(4) { animation-delay: 0.8s; }
-    .exam-card:hover { transform: translateY(-10px); box-shadow: 0 12px 30px rgba(0,0,0,0.5); }
-    .exam-card img { width: 70px; height: auto; margin-bottom: 1rem; transition: transform 0.3s; }
-    .exam-card img:hover { transform: scale(1.1); }
-    .exam-card h3 { margin-bottom: 0.5rem; font-size: 1.4rem; }
-    .exam-card p { font-size: 1rem; color: #ccc; line-height: 1.5; }
-    .exam-card button { margin-top: 1rem; padding: 0.5rem 1rem; border: none; border-radius: 6px; background: #ffcc00; color: #3a006f; font-weight: 600; cursor: not-allowed; transition: 0.3s; }
-    .exam-card button:hover { opacity: 0.8; }
-
-    /* Footer */
-    footer { text-align: center; padding: 3rem 2rem; background: #3a006f; font-size: 0.95rem; color: #fff; }
-
-    /* Animations */
-    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeIn { to { opacity: 1; } }
-    @keyframes fadeInCard { to { opacity: 1; transform: translateY(0); } }
-
-    /* Responsive */
-    @media(max-width:768px){ header h1{font-size:2.2rem;} section h2{font-size:2rem;} }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lawgify - AI for Law Exam Prep</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #2c0051, #3a006f);
+            color: #fff;
+            scroll-behavior: smooth;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+            background-color: #3a006f;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #ffcc00;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #ffcc00;
+        }
+        /* Header */
+        header {
+            text-align: center;
+            padding: 6rem 2rem 4rem 2rem;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #ffcc00;
+        }
+        header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        /* Exam Cards */
+        .exam-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .exam-card {
+            background-color: #3a006f;
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .exam-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .exam-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        .exam-card p {
+            font-size: 0.95rem;
+            color: #cccccc;
+        }
+        .exam-logo {
+            width: 60px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+        .exam-card button {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            background-color: #ffcc00;
+            color: #3a006f;
+            font-weight: 600;
+            cursor: not-allowed;
+        }
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: #3a006f;
+            color: #fff;
+        }
+        .tagline {
+            color: #ffcc00;
+            font-weight: 600;
+        }
+    </style>
 </head>
 <body>
 
-<!-- Navbar -->
-<nav>
-    <div class="logo">Lawgify</div>
-    <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#exams">Exams</a></li>
-        <li><a href="#about">About Us</a></li>
-    </ul>
-</nav>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">Lawgify</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#exams">Exams</a></li>
+            <li><a href="#about">About Us</a></li>
+        </ul>
+    </nav>
 
-<!-- Header -->
-<header id="home">
-    <h1>Lawgify</h1>
-    <p><span class="tagline">Using AI to make law preparation easier</span>. Lawgify consolidates previous year questions, revision notes, mock tests, and daily legal updates in one distraction-free platform for law aspirants.</p>
-</header>
+    <!-- Header -->
+    <header id="home">
+        <h1>Lawgify</h1>
+        <p><span class="tagline">Using AI to make law preparation easier</span>. Lawgify consolidates previous year questions, revision notes, mock tests, and daily legal updates in one distraction-free platform for law aspirants.</p>
+    </header>
 
-<!-- Exams Section -->
-<section id="exams">
-    <h2>Law Exams</h2>
+    <!-- Exams Section -->
+    <section id="exams">
+        <h2>Law Exams</h2>
+        <div class="exam-cards">
+            <div class="exam-card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b3/National_Law_School_of_India_University_Logo.svg/815px-National_Law_School_of_India_University_Logo.svg.png" alt="CLAT Logo" class="exam-logo">
+                <h3>CLAT UG</h3>
+                <p>Year-wise PYQs, solutions, and demo content</p>
+                <button disabled>Coming Soon</button>
+            </div>
+            <div class="exam-card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/1b/Indian_Law_Institute_Logo.svg/1136px-Indian_Law_Institute_Logo.svg.png" alt="CLAT PG Logo" class="exam-logo">
+                <h3>CLAT PG</h3>
+                <p>Year-wise PYQs, solutions, and demo content</p>
+                <button disabled>Coming Soon</button>
+            </div>
+            <div class="exam-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Ministry_of_Law_and_Justice.svg" alt="AILET Logo" class="exam-logo">
+                <h3>AILET</h3>
+                <p>Year-wise PYQs, solutions, and demo content</p>
+                <button disabled>Coming Soon</button>
+            </div>
+            <div class="exam-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Insignia_of_the_Supreme_Court_of_India.svg/1024px-Insignia_of_the_Supreme_Court_of_India.svg.png" alt="State Judicial Services Logo" class="exam-logo">
+                <h3>State Judicial Services</h3>
+                <p>Year-wise PYQs, solutions, and demo content</p>
+                <button disabled>Coming Soon</button>
+            </div>
+        <!-- CLAT 2025 Demo Questions Section -->
+<section id="clat-demo">
+    <h2>CLAT 2025 - Demo Questions</h2>
     <div class="exam-cards">
+        <!-- Question 1 -->
         <div class="exam-card">
-            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b3/National_Law_School_of_India_University_Logo.svg/815px-National_Law_School_of_India_University_Logo.svg.png" alt="CLAT UG Logo">
-            <h3>CLAT UG</h3>
-            <p>Year-wise PYQs, solutions, and demo content</p>
-            <button disabled>Coming Soon</button>
+            <h3>Q1: Legal Remedy</h3>
+            <p>In a contract, if one party fails to perform their obligations, what legal remedy is available to the aggrieved party?</p>
+            <ol type="A">
+                <li>Specific Performance</li>
+                <li>Nominal Damages</li>
+                <li>Injunction</li>
+                <li>All of the above</li>
+            </ol>
         </div>
+
+        <!-- Question 2 -->
         <div class="exam-card">
-            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/1b/Indian_Law_Institute_Logo.svg/1136px-Indian_Law_Institute_Logo.svg.png" alt="CLAT PG Logo">
-            <h3>CLAT PG</h3>
-            <p>Year-wise PYQs, solutions, and demo content</p>
-            <button disabled>Coming Soon</button>
+            <h3>Q2: Right to Equality</h3>
+            <p>Which Article of the Indian Constitution guarantees the right to equality?</p>
+            <ol type="A">
+                <li>Article 14</li>
+                <li>Article 19</li>
+                <li>Article 21</li>
+                <li>Article 32</li>
+            </ol>
         </div>
+
+        <!-- Question 3 -->
         <div class="exam-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Ministry_of_Law_and_Justice.svg" alt="AILET Logo">
-            <h3>AILET</h3>
-            <p>Year-wise PYQs, solutions, and demo content</p>
-            <button disabled>Coming Soon</button>
+            <h3>Q3: Murder vs Culpable Homicide</h3>
+            <p>Explain the difference between 'murder' and 'culpable homicide not amounting to murder' under Indian Penal Code.</p>
+            <ol type="A">
+                <li>Murder is premeditated; culpable homicide may lack premeditation</li>
+                <li>Murder always involves death; culpable homicide may not</li>
+                <li>Culpable homicide is punishable; murder is not</li>
+                <li>No difference</li>
+            </ol>
         </div>
+
+        <!-- Question 4 -->
         <div class="exam-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Insignia_of_the_Supreme_Court_of_India.svg/1024px-Insignia_of_the_Supreme_Court_of_India.svg.png" alt="State Judicial Services Logo">
-            <h3>State Judicial Services</h3>
-            <p>Year-wise PYQs, solutions, and demo content</p>
-            <button disabled>Coming Soon</button>
+            <h3>Q4: Doctrine of Stare Decisis</h3>
+            <p>What is the doctrine of 'stare decisis' in the context of judicial precedents?</p>
+            <ol type="A">
+                <li>Courts must follow their previous decisions</li>
+                <li>Judges can ignore previous decisions</li>
+                <li>Only lower courts follow precedent</li>
+                <li>It refers to law of tort</li>
+            </ol>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="exam-card">
+            <h3>Q5: Tort Definition</h3>
+            <p>Define 'tort' and provide an example of a tortious act.</p>
+            <ol type="A">
+                <li>Wrongful act causing harm; example: negligence</li>
+                <li>Criminal act only; example: theft</li>
+                <li>Civil dispute without harm; example: contract</li>
+                <li>All legal acts</li>
+            </ol>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="exam-card">
+            <h3>Q6: Elements of Valid Contract</h3>
+            <p>What are the essential elements required to form a valid contract under the Indian Contract Act?</p>
+            <ol type="A">
+                <li>Offer and Acceptance</li>
+                <li>Lawful Consideration</li>
+                <li>Capacity to Contract</li>
+                <li>All of the above</li>
+            </ol>
+        </div>
+
+        <!-- Question 7 -->
+        <div class="exam-card">
+            <h3>Q7: Vicarious Liability</h3>
+            <p>Explain the concept of 'vicarious liability' with an example.</p>
+            <ol type="A">
+                <li>Employer is liable for employee's acts</li>
+                <li>Only individual is liable</li>
+                <li>Liability transfers to government</li>
+                <li>None of the above</li>
+            </ol>
+        </div>
+
+        <!-- Question 8 -->
+        <div class="exam-card">
+            <h3>Q8: Mens Rea</h3>
+            <p>What is the significance of 'mens rea' in criminal liability?</p>
+            <ol type="A">
+                <li>Establishes the mental intent</li>
+                <li>Proves physical act only</li>
+                <li>Determines civil liability</li>
+                <li>Irrelevant for crime</li>
+            </ol>
+        </div>
+
+        <!-- Question 9 -->
+        <div class="exam-card">
+            <h3>Q9: Public vs Private Nuisance</h3>
+            <p>Differentiate between 'public nuisance' and 'private nuisance'.</p>
+            <ol type="A">
+                <li>Public affects the community; private affects individual</li>
+                <li>Private affects community; public affects individual</li>
+                <li>Both are same</li>
+                <li>No legal remedy for public nuisance</li>
+            </ol>
+        </div>
+
+        <!-- Question 10 -->
+        <div class="exam-card">
+            <h3>Q10: Defamation Defenses</h3>
+            <p>What are the defenses available in a defamation suit?</p>
+            <ol type="A">
+                <li>Truth, Privilege, Fair Comment</li>
+                <li>Ignorance of facts</li>
+                <li>Consent of the court</li>
+                <li>All of the above</li>
+            </ol>
         </div>
     </div>
 </section>
 
-<!-- About Us Section -->
-<section id="about">
-    <h2>About Lawgify</h2>
-    <p>Lawgify is a freemium legal edtech platform aiming to revolutionize law exam preparation. We are building a machine learning-based model to automatically organize previous year questions, provide concise solutions, and help students track their syllabus journey efficiently. Coming soon: interactive demo and premium features.</p>
+<!-- Machine Learning Section -->
+<section id="ml-section">
+    <h2>How Lawgify Uses Machine Learning</h2>
+    <p>
+        Lawgify leverages machine learning to improve law exam preparation by:
+    </p>
+    <ul>
+        <li><strong>Intelligent Question Organization:</strong> Classifying PYQs by topic, difficulty, and exam year.</li>
+        <li><strong>Personalized Study Paths:</strong> Suggesting study plans based on student performance analytics.</li>
+        <li><strong>Automated Solution Generation:</strong> AI-generated concise solutions highlighting key legal principles.</li>
+        <li><strong>Progress Analytics:</strong> Visualizing trends, strengths, and weaknesses to optimize preparation.</li>
+    </ul>
 </section>
-
-<!-- Footer -->
-<footer>
-    &copy; 2025 Lawgify. <span class="tagline">Using AI to make law preparation easier</span>
-</footer>
-
-</body>
-</html>
