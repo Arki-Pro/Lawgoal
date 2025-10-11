@@ -6,13 +6,16 @@
     <title>Lawgify - AI for Law Exam Prep</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Reset & Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            margin: 0;
             font-family: 'Inter', sans-serif;
-            background-color: #2c0051; /* dark purple */
+            background-color: #2c0051;
             color: #ffffff;
+            line-height: 1.6;
         }
 
+        /* Navbar */
         nav {
             display: flex;
             justify-content: space-between;
@@ -23,88 +26,69 @@
             top: 0;
             z-index: 100;
         }
-
-        nav .logo {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: #ffcc00;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-        }
-
+        nav .logo { font-weight: 700; font-size: 1.6rem; color: #ffcc00; }
+        nav ul { list-style: none; display: flex; gap: 2rem; }
         nav ul li a {
             text-decoration: none;
             color: #ffffff;
             font-weight: 600;
             transition: color 0.3s;
         }
+        nav ul li a:hover { color: #ffcc00; }
 
-        nav ul li a:hover {
-            color: #ffcc00;
-        }
-
+        /* Header */
         header {
             text-align: center;
             padding: 6rem 2rem 4rem 2rem;
+            background: linear-gradient(135deg, #2c0051 0%, #3a006f 100%);
         }
-
         header h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 1rem;
             color: #ffcc00;
         }
+        header p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; }
 
-        header p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
+        /* Sections */
+        section { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
+        section h2 { text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #ffcc00; }
 
-        section {
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        section h2 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: #ffcc00;
-        }
-
+        /* Exam Cards */
         .exam-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
         }
-
         .exam-card {
             background-color: #3a006f;
-            border-radius: 12px;
-            padding: 1.5rem;
+            border-radius: 15px;
+            padding: 2rem 1.5rem;
             text-align: center;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-
         .exam-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         }
-
-        .exam-card h3 {
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
+        .exam-card h3 { margin-bottom: 1rem; font-size: 1.4rem; color: #ffcc00; }
+        .exam-card p { font-size: 1rem; color: #cccccc; margin-bottom: 1.5rem; }
+        .exam-card button {
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            background-color: #ff9800;
+            color: #2c0051;
+            font-weight: 600;
+            cursor: not-allowed;
+            opacity: 0.9;
+            transition: opacity 0.3s;
         }
+        .exam-card button:hover { opacity: 1; }
 
-        .exam-card p {
-            font-size: 0.95rem;
-            color: #cccccc;
-        }
+        /* About Us */
+        #about p { max-width: 800px; margin: 0 auto; font-size: 1.1rem; text-align: center; }
 
+        /* Footer */
         footer {
             text-align: center;
             padding: 2rem;
@@ -112,9 +96,14 @@
             color: #ffffff;
         }
 
-        .tagline {
-            color: #ffcc00;
-            font-weight: 600;
+        /* Tagline */
+        .tagline { color: #ffcc00; font-weight: 600; }
+
+        /* Responsive */
+        @media(max-width: 600px){
+            header h1 { font-size: 2rem; }
+            section h2 { font-size: 1.8rem; }
+            .exam-card h3 { font-size: 1.2rem; }
         }
     </style>
 </head>
@@ -133,8 +122,7 @@
     <!-- Header / Home -->
     <header id="home">
         <h1>Lawgify</h1>
-        <p><span class="tagline">Using AI to make law preparation easier</span>. 
-        Lawgify consolidates previous year questions, revision notes, mock tests, and daily legal updates in one distraction-free platform for law aspirants.</p>
+        <p><span class="tagline">Using AI to make law preparation easier</span>. Consolidating previous year questions, mock tests, revision notes, and legal updates in one distraction-free platform for law aspirants.</p>
     </header>
 
     <!-- Exams Section -->
@@ -144,18 +132,22 @@
             <div class="exam-card">
                 <h3>CLAT UG</h3>
                 <p>Year-wise PYQs, solutions, and coming soon demo content</p>
+                <button disabled>Coming Soon</button>
             </div>
             <div class="exam-card">
                 <h3>CLAT PG</h3>
                 <p>Year-wise PYQs, solutions, and coming soon demo content</p>
+                <button disabled>Coming Soon</button>
             </div>
             <div class="exam-card">
                 <h3>AILET</h3>
                 <p>Year-wise PYQs, solutions, and coming soon demo content</p>
+                <button disabled>Coming Soon</button>
             </div>
             <div class="exam-card">
                 <h3>State Judicial Services</h3>
                 <p>Year-wise PYQs, solutions, and coming soon demo content</p>
+                <button disabled>Coming Soon</button>
             </div>
         </div>
     </section>
@@ -163,14 +155,13 @@
     <!-- About Us Section -->
     <section id="about">
         <h2>About Lawgify</h2>
-        <p>Lawgify is a freemium legal edtech platform aiming to revolutionize law exam preparation. 
-        We are building a machine learning-based model to automatically organize previous year questions, provide concise solutions, and help students track their syllabus journey efficiently. Coming soon: interactive demo and premium features.</p>
+        <p>Lawgify is a freemium legal edtech platform aiming to revolutionize law exam preparation. We are building a machine learning-based model to automatically organize previous year questions, provide concise solutions, and help students track their syllabus journey efficiently. <span class="tagline">Using AI to make law preparation easier</span>. Coming soon: interactive demo and premium features.</p>
     </section>
 
     <!-- Footer -->
     <footer>
-        &copy; Lawgify <span class="tagline">Using AI to make law preparation easier</span>
+        &copy; 2025 Lawgify. <span class="tagline">Using AI to make law preparation easier</span>
     </footer>
 
 </body>
-</html> 
+</html>
