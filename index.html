@@ -1,311 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lawgify • Law Prep, Simplified</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <style>
-    /* Base reset & typography */
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #1b001f;
-      color: #f0f0f0;
-      line-height: 1.6;
-    }
-    a { text-decoration: none; color: inherit; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legoal: Law Prep, Simplified</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* Global styles */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0f0f0f, #1a0a1a);
+  color: #fff;
+  scroll-behavior: smooth;
+}
 
-    /* Container & layout */
-    .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
-    header {
-      padding: 4rem 0;
-      text-align: center;
-      background: linear-gradient(135deg, #2c0051, #3a006f);
-    }
-    header h1 {
-      font-size: 3rem;
-      color: #ffcc00;
-      margin-bottom: 1rem;
-    }
-    header p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto;
-    }
+section {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
 
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.2rem 0;
-    }
-    nav .logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #ffcc00;
-    }
-    nav ul {
-      display: flex;
-      gap: 2rem;
-    }
-    nav ul li a {
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-    nav ul li a:hover {
-      color: #ffcc00;
-    }
+h1, h2, h3 {
+  color: #ff77ff;
+}
 
-    section {
-      padding: 4rem 0;
-    }
-    section h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      color: #ffcc00;
-      margin-bottom: 2rem;
-    }
+p {
+  color: #e0d9e0;
+  line-height: 1.6;
+}
 
-    /* Exam cards */
-    .exam-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
-      gap: 2rem;
-    }
-    .exam-card {
-      background: #2e004e;
-      border-radius: 12px;
-      padding: 2rem;
-      text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .exam-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
-    }
-    .exam-card img {
-      width: 60px;
-      height: auto;
-      margin-bottom: 1rem;
-    }
-    .exam-card h3 {
-      margin-bottom: 0.5rem;
-      font-size: 1.4rem;
-    }
-    .exam-card p {
-      font-size: 1rem;
-      color: #c0c0c0;
-    }
-    .exam-card button {
-      margin-top: 1rem;
-      padding: 0.6rem 1.4rem;
-      background: #ffcc00;
-      color: #2e004e;
-      border: none;
-      border-radius: 6px;
-      font-weight: 600;
-      cursor: not-allowed;
-    }
+/* Navbar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(0,0,0,0.85);
+}
 
-    /* Demo quiz cards */
-    .quiz-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-      gap: 2rem;
-    }
-    .quiz-card {
-      background: #300054;
-      border-radius: 10px;
-      padding: 1.8rem;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .quiz-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.35);
-    }
-    .quiz-card p {
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-    .quiz-card ul {
-      list-style: none;
-      padding: 0;
-    }
-    .quiz-card li {
-      padding: 0.5rem 0.8rem;
-      margin: 0.4rem 0;
-      border-radius: 6px;
-      background: rgba(255,255,255,0.1);
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .quiz-card li:hover {
-      background: rgba(255,204,0,0.2);
-    }
-    .quiz-card li.correct {
-      background: #4caf50 !important;
-      color: #fff;
-    }
-    .quiz-card li.wrong {
-      background: #e53935 !important;
-      color: #fff;
-    }
+nav .logo {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #ff77ff;
+}
 
-    /* ML section */
-    .ml-list {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: left;
-    }
-    .ml-list li {
-      margin-bottom: 1rem;
-      font-size: 1.1rem;
-    }
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
 
-    footer {
-      padding: 2rem 0;
-      text-align: center;
-      background: #2e004e;
-      color: #f0f0f0;
-    }
-    footer .tagline {
-      color: #ffcc00;
-      font-weight: 600;
-    }
-  </style>
+nav ul li a {
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #ffcc00;
+}
+
+/* Hero Section */
+header {
+  text-align: center;
+  padding: 100px 20px 60px 20px;
+}
+
+header h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+header p {
+  font-size: 1.25rem;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* Cards & feature sections */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 40px;
+}
+
+.card {
+  background-color: #1a0a1a;
+  padding: 2rem;
+  border-radius: 12px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(255,119,255,0.2);
+}
+
+.card h3 {
+  margin-bottom: 0.8rem;
+}
+
+/* Roadmap */
+.roadmap li {
+  margin-bottom: 1rem;
+}
+
+/* Buttons */
+button {
+  background-color: #ff77ff;
+  color: #0f0f0f;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #ffcc00;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem;
+  background-color: #1a0a1a;
+  color: #fff;
+  margin-top: 60px;
+}
+</style>
 </head>
 <body>
 
-  <div class="container">
-    <nav>
-      <div class="logo">Lawgify</div>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#exams">Exams</a></li>
-        <li><a href="#demo">Demo Quiz</a></li>
-        <li><a href="#ml">ML Insights</a></li>
-        <li><a href="#about">About</a></li>
-      </ul>
-    </nav>
+<!-- Navbar -->
+<nav>
+  <div class="logo">Legoal</div>
+  <ul>
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#features">Why Legoal</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-    <header id="home">
-      <h1>Lawgify</h1>
-      <p><span class="tagline">Using AI to make law preparation easier</span>. A one-place platform offering PYQs, mock tests, and smart ML-powered insights for law aspirants.</p>
-    </header>
+<!-- Hero Section -->
+<header id="hero">
+  <h1>Legoal: Law Prep, Simplified</h1>
+  <p>One Platform. All Law Exams. No Clutter.</p>
+</header>
 
-    <section id="exams">
-      <h2>Exams Covered</h2>
-      <div class="exam-grid">
-        <div class="exam-card">
-          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b3/National_Law_School_of_India_University_Logo.svg/815px-National_Law_School_of_India_University_Logo.svg.png" alt="CLAT UG">
-          <h3>CLAT UG</h3>
-          <p>Topic-wise PYQs, solutions, mock tests</p>
-          <button disabled>Coming Soon</button>
-        </div>
-        <div class="exam-card">
-          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/1b/Indian_Law_Institute_Logo.svg/1136px-Indian_Law_Institute_Logo.svg.png" alt="CLAT PG">
-          <h3>CLAT PG</h3>
-          <p>All previous years, highly structured</p>
-          <button disabled>Coming Soon</button>
-        </div>
-        <div class="exam-card">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Ministry_of_Law_and_Justice.svg" alt="AILET">
-          <h3>AILET</h3>
-          <p>Complete question banks + notes</p>
-          <button disabled>Coming Soon</button>
-        </div>
-        <div class="exam-card">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Insignia_of_the_Supreme_Court_of_India.svg/1024px-Insignia_of_the_Supreme_Court_of_India.svg.png" alt="State Judiciary">
-          <h3>State Judiciary</h3>
-          <p>State-specific exams like UP, MP, etc.</p>
-          <button disabled>Coming Soon</button>
-        </div>
-      </div>
-    </section>
+<!-- Pain Points -->
+<section id="features">
+  <h2>The Aspirant's Challenge</h2>
+  <p>Law aspirants often face significant hurdles. Valuable Previous Year Questions (PYQs) are scattered across countless PDFs, Telegram groups, and coaching sites. This fragmentation forces students to waste precious time searching for materials instead of focusing on their studies. Most generic prep apps fail to provide law-specific content, leaving students with irrelevant information and an inefficient study experience. Legoal addresses these pain points directly.</p>
+</section>
 
-    <section id="demo">
-      <h2>CLAT 2025 Demo Quiz</h2>
-      <div class="quiz-grid">
-        <div class="quiz-card" data-answer="B">
-          <p>1. Which word is closest in meaning to "Alleviate"?</p>
-          <ul>
-            <li data-option="A">Increase</li>
-            <li data-option="B">Relieve</li>
-            <li data-option="C">Complicate</li>
-            <li data-option="D">Destroy</li>
-          </ul>
-        </div>
-        <div class="quiz-card" data-answer="C">
-          <p>2. The Constitution of India was adopted in the year?</p>
-          <ul>
-            <li data-option="A">1945</li>
-            <li data-option="B">1947</li>
-            <li data-option="C">1950</li>
-            <li data-option="D">1952</li>
-          </ul>
-        </div>
-        <!-- Add other 8 questions in same format -->
-      </div>
-    </section>
+<section>
+  <h2>Introducing Legoal: Your AI-Powered Legal Guide</h2>
+  <p>Legoal is the first centralized platform designed exclusively for Judiciary, AIBE, Law Officer, and Clerkship exams in India. Our AI-powered mobile application offers structured syllabus, daily law updates, comprehensive notes, and interactive flashcards. With a clean, ad-free interface and an affordable subscription, Legoal transforms your study experience, making it efficient, focused, and personalized.</p>
+</section>
 
-    <section id="ml">
-      <h2>Machine Learning Insights</h2>
-      <ul class="ml-list">
-        <li>Smartly organize PYQs by topic, year, difficulty.</li>
-        <li>Auto-validate answers and highlight key legal principles.</li>
-        <li>Track your strengths & weaknesses over time.</li>
-        <li>Get personalized recommendations for what to study next.</li>
-      </ul>
-    </section>
-
-    <section id="about">
-      <h2>About Lawgify</h2>
-      <p>Lawgify is a freemium legal edtech platform built to revolutionize how students prepare for law exams. With AI-powered features, we aim to provide clarity, structure, and smarter study paths for law aspirants.</p>
-    </section>
+<!-- Feature Cards -->
+<section>
+  <h2>Why Legoal Stands Out</h2>
+  <div class="card-container">
+    <div class="card">
+      <h3>Clutter-Free Interface</h3>
+      <p>Enjoy a clean, ad-free study environment, minimizing distractions and maximizing focus.</p>
+    </div>
+    <div class="card">
+      <h3>Organized PYQs</h3>
+      <p>Previous Year Questions are meticulously organized by year, subject, and topic for easy navigation.</p>
+    </div>
+    <div class="card">
+      <h3>Smart Search & Filters</h3>
+      <p>Quickly find specific questions or topics with advanced search and filtering capabilities.</p>
+    </div>
+    <div class="card">
+      <h3>Performance Analytics</h3>
+      <p>Track your progress and identify high-yield topics with detailed frequency and weightage trends.</p>
+    </div>
   </div>
+</section>
 
-  <footer>
-    &copy; 2025 Lawgify. <span class="tagline">Using AI to make law preparation easier</span>
-  </footer>
+<!-- Personalized Prep Journey -->
+<section>
+  <h2>Your Personalized Prep Journey</h2>
+  <ol class="card-container roadmap">
+    <li><strong>01 Select Your Exam:</strong> Log in and choose your target law exam from our comprehensive list.</li>
+    <li><strong>02 Explore PYQs:</strong> Browse previous year questions by year, subject, or topic. Our AI recommends relevant questions.</li>
+    <li><strong>03 Filter & Bookmark:</strong> Use intelligent filters and bookmark important questions for quick review.</li>
+    <li><strong>04 Review Analytics:</strong> Access AI-driven insights on topic frequency and trends, guiding your strategy and boosting retention.</li>
+    <li><strong>05 Study Distraction-Free:</strong> Immerse yourself in a clutter-free study environment, optimized for deep learning.</li>
+  </ol>
+</section>
 
-  <script>
-    // Reveal on scroll
-    const secs = document.querySelectorAll('section');
-    function reveal() {
-      secs.forEach(sec => {
-        const top = sec.getBoundingClientRect().top;
-        const h = window.innerHeight;
-        if (top < h * 0.85) {
-          sec.classList.add('show');
-        }
-      });
-    }
-    window.addEventListener('scroll', reveal);
-    window.addEventListener('load', reveal);
+<!-- Premium Features -->
+<section>
+  <h2>Unlocking Premium Features</h2>
+  <div class="card-container">
+    <div class="card"><h3>Judgment Timelines</h3><p>Chronologically organized landmark judgments for each subject.</p></div>
+    <div class="card"><h3>Landmark Judgment PYQs</h3><p>Previous year questions linked to key judgments.</p></div>
+    <div class="card"><h3>Bare Act Questions</h3><p>Topic-wise questions from statutes with detailed solutions.</p></div>
+    <div class="card"><h3>Offline Access</h3><p>Download PYQs and summaries for uninterrupted study.</p></div>
+  </div>
+</section>
 
-    // Quiz interactivity
-    document.querySelectorAll('.quiz-card').forEach(card => {
-      const opts = card.querySelectorAll('li');
-      const correct = card.dataset.answer;
-      opts.forEach(opt => {
-        opt.addEventListener('click', () => {
-          if (opt.dataset.option === correct) {
-            opt.classList.add('correct');
-          } else {
-            opt.classList.add('wrong');
-            opts.forEach(o => {
-              if (o.dataset.option === correct) {
-                o.classList.add('correct');
-              }
-            });
-          }
-          opts.forEach(o => o.style.pointerEvents = 'none');
-        });
-      });
-    });
-  </script>
+<!-- Roadmap -->
+<section id="roadmap">
+  <h2>Simple, Affordable, Scalable</h2>
+  <p style="text-align:center;">Tap into a Huge Market, Untapped Niche</p>
+  <ul class="roadmap">
+    <li><strong>Platform Beta Launch:</strong> Initial release with comprehensive PYQs and Mock Tests.</li>
+    <li><strong>Content Expansion:</strong> Integrate daily Current Affairs and in-depth Notes.</li>
+    <li><strong>Enhanced Learning:</strong> Launch Flashcards with multi-lingual support.</li>
+    <li><strong>Growth & Partnerships:</strong> Expand user base and establish collaborations with law colleges.</li>
+  </ul>
+  <p style="text-align:center; margin-top:20px;">Let's Build the Future of Law Prep Together. Legoal makes legal exam prep efficient, affordable, and focused.</p>
+</section>
 
-</body>
-</html>
+<!-- Footer -->
+<footer>
+  &copy; 2025 Legoal. All Rights Reserved.
