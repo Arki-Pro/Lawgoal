@@ -5,246 +5,281 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Legoal: Law Prep, Simplified</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-  /* Reset & Base */
+  /* === Base === */
   * {margin:0;padding:0;box-sizing:border-box;}
   html {scroll-behavior: smooth;}
   body {
     font-family: 'Inter', sans-serif;
-    background-color: #0f0f0f;
+    background: radial-gradient(circle at top left, #1a0b1f, #0f0f0f 60%);
     color: #fff;
-    line-height: 1.6;
+    overflow-x:hidden;
   }
-  a {text-decoration:none;color:inherit;}
 
-  /* Navbar */
+  a {text-decoration:none;color:inherit;}
+  h1, h2, h3 {font-weight:700;}
+  section {padding:4rem 2rem;max-width:1100px;margin:auto;}
+
+  /* === Navbar === */
   nav {
     position: sticky;
     top:0;
-    background-color: #111;
-    padding: 1rem 2rem;
+    background: rgba(15,15,15,0.85);
+    backdrop-filter: blur(10px);
+    padding:1rem 2rem;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    z-index:1000;
-    border-bottom: 1px solid #222;
+    border-bottom:1px solid rgba(255,255,255,0.05);
+    z-index:100;
   }
-  nav .logo {font-weight:700;font-size:1.5rem;color:#ff6ec7;}
-  nav ul {display:flex;gap:2rem;list-style:none;}
-  nav ul li a {font-weight:500;color:#fff;transition:0.3s;}
-  nav ul li a:hover {color:#ff6ec7;}
-
-  /* Hero Section */
-  header {
-    padding:6rem 2rem 4rem 2rem;
-    text-align:center;
-    max-width:1000px;
-    margin:auto;
-  }
-  header h1 {
-    font-size:3rem;
-    background: linear-gradient(90deg, #ff6ec7, #8b5cf6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom:1rem;
-  }
-  header p {font-size:1.2rem;color:#aaa;max-width:700px;margin:1rem auto 0 auto;}
-
-  /* Sections */
-  section {
-    max-width:1000px;
-    margin:4rem auto;
-    padding:0 2rem;
-    opacity:0;
-    transform:translateY(20px);
-    animation:fadeInUp 1s forwards;
-  }
-  section:nth-of-type(2){animation-delay:0.2s;}
-  section:nth-of-type(3){animation-delay:0.4s;}
-  section:nth-of-type(4){animation-delay:0.6s;}
-  section:nth-of-type(5){animation-delay:0.8s;}
-  section h2 {
-    font-size:2rem;
-    background: linear-gradient(90deg,#ff6ec7,#8b5cf6);
+  nav .logo {
+    font-size:1.7rem;
+    font-weight:700;
+    background:linear-gradient(90deg,#ff6ec7,#a855f7);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
-    margin-bottom:2rem;
+  }
+  nav ul {
+    display:flex;
+    list-style:none;
+    gap:2rem;
+  }
+  nav ul li a {
+    font-weight:500;
+    transition:0.3s;
+  }
+  nav ul li a:hover {
+    color:#ff6ec7;
+  }
+
+  /* === Hero === */
+  header {
     text-align:center;
+    padding:7rem 2rem 5rem 2rem;
+    background: radial-gradient(circle at center top, #180018 0%, #0f0f0f 90%);
+  }
+  header h1 {
+    font-size:3.5rem;
+    line-height:1.2;
+    background:linear-gradient(90deg,#ff6ec7,#a855f7);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin-bottom:1rem;
+  }
+  header p {
+    font-size:1.2rem;
+    color:#c0bfc2;
+    max-width:700px;
+    margin:auto;
   }
 
-  @keyframes fadeInUp {
-    to {opacity:1; transform:translateY(0);}
+  /* === Section Titles === */
+  section h2 {
+    text-align:center;
+    font-size:2.2rem;
+    margin-bottom:2rem;
+    background:linear-gradient(90deg,#ff6ec7,#8b5cf6);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
   }
 
-  /* Cards */
+  /* === Features === */
+  .feature-panel {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:2rem;
+  }
+  .feature {
+    background:#151015;
+    border:1px solid rgba(255,255,255,0.07);
+    border-radius:16px;
+    padding:2rem;
+    box-shadow:0 0 15px rgba(255,110,199,0.05);
+    transition:all 0.4s ease;
+  }
+  .feature:hover {
+    transform:translateY(-5px);
+    border-color:#ff6ec7;
+    box-shadow:0 0 25px rgba(255,110,199,0.15);
+  }
+  .feature h3 {
+    color:#ff6ec7;
+    font-size:1.3rem;
+    margin-bottom:0.8rem;
+  }
+  .feature p {color:#bbb;}
+
+  /* === Cards (Quiz etc) === */
   .card-container {
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
     gap:2rem;
   }
   .card {
-    background:#111;
+    background:linear-gradient(145deg,#171117,#0e0a0f);
+    border:1px solid rgba(255,255,255,0.07);
+    border-radius:16px;
     padding:2rem;
-    border-radius:12px;
-    border:1px solid #222;
-    transition:0.3s;
+    box-shadow:0 0 15px rgba(255,110,199,0.05);
+    transition:0.4s ease;
   }
   .card:hover {
     transform:translateY(-5px);
     border-color:#ff6ec7;
-    box-shadow:0 8px 20px rgba(255,110,199,0.2);
+    box-shadow:0 0 25px rgba(255,110,199,0.15);
   }
   .card h3 {
-    font-size:1.3rem;
-    margin-bottom:1rem;
+    font-size:1.2rem;
     color:#ff6ec7;
+    margin-bottom:1rem;
   }
-  .card p {color:#aaa;}
-  .card button {
-    margin-top:1rem;
-    padding:0.5rem 1rem;
+  .options button {
+    display:block;
+    width:100%;
+    text-align:left;
+    margin:0.4rem 0;
+    padding:0.7rem 1rem;
     border:none;
-    border-radius:6px;
-    background:#ff6ec7;
+    border-radius:8px;
+    background:#1f1f1f;
     color:#fff;
-    font-weight:600;
     cursor:pointer;
     transition:0.3s;
+    font-weight:500;
   }
-  .card button:hover {background:#8b5cf6;}
+  .options button:hover {background:#ff6ec7;color:#fff;}
+  .correct {background:#1e4620!important;color:#76ff7a!important;}
+  .wrong {background:#461e1e!important;color:#ff7070!important;}
 
-  /* Feature Panels */
-  .feature-panel {
-    display:flex;
-    flex-wrap:wrap;
+  /* === Roadmap === */
+  .roadmap-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
     gap:2rem;
-    margin-top:2rem;
   }
-  .feature {
-    flex:1 1 300px;
-    background:#111;
-    border:1px solid #222;
-    border-radius:12px;
-    padding:2rem;
-    transition:0.3s;
-  }
-  .feature:hover {border-color:#ff6ec7;box-shadow:0 8px 20px rgba(255,110,199,0.2);}
-  .feature h3 {color:#ff6ec7;margin-bottom:1rem;}
-  .feature p {color:#aaa;}
 
-  /* Footer */
+  /* === Footer === */
   footer {
     text-align:center;
-    padding:3rem 2rem;
-    border-top:1px solid #222;
-    color:#aaa;
-    margin-top:4rem;
+    padding:3rem 1rem;
+    border-top:1px solid rgba(255,255,255,0.07);
+    color:#999;
   }
-  footer span{color:#ff6ec7;font-weight:600;}
+  footer span {
+    color:#ff6ec7;
+    font-weight:600;
+  }
 </style>
 </head>
+
 <body>
 
-<!-- Navbar -->
+<!-- === Navbar === -->
 <nav>
   <div class="logo">Legoal</div>
   <ul>
     <li><a href="#hero">Home</a></li>
     <li><a href="#features">Features</a></li>
+    <li><a href="#pyqs">Demo</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#footer">Contact</a></li>
   </ul>
 </nav>
 
-<!-- Hero Section -->
+<!-- === Hero Section === -->
 <header id="hero">
   <h1>Legoal: Law Prep, Simplified</h1>
-  <p>One Platform. All Law Exams. No Clutter. <br> <span style="color:#ff6ec7;">AI-powered learning</span> to make law preparation easier, efficient, and focused.</p>
+  <p>One Platform. All Law Exams. No Clutter.<br>
+  <span style="color:#ff6ec7;">AI-powered, distraction-free learning</span> built for India’s law aspirants.</p>
 </header>
 
-<!-- Aspirant Challenge Section -->
+<!-- === Feature Section === -->
 <section id="features">
   <h2>The Aspirant's Challenge</h2>
   <div class="feature-panel">
     <div class="feature">
       <h3>Scattered Resources</h3>
-      <p>Previous year questions (PYQs) are scattered across PDFs, Telegram groups, and coaching sites. Students waste time searching instead of studying.</p>
+      <p>PYQs are hidden in endless PDFs, Telegram groups, and coaching notes—wasting precious time.</p>
     </div>
     <div class="feature">
       <h3>Generic Prep Apps</h3>
-      <p>Most apps provide irrelevant content. Law aspirants need focused material tailored for Judiciary, AIBE, and Clerkship exams.</p>
+      <p>Most learning platforms aren’t built for law exams. Legoal solves this by offering law-specific content and analytics.</p>
     </div>
     <div class="feature">
-      <h3>Legoal Solution</h3>
-      <p>Legoal centralizes PYQs, mock tests, notes, and daily updates in one clean interface with AI-driven recommendations.</p>
+      <h3>AI-Powered Focus</h3>
+      <p>Our algorithms curate relevant questions, track progress, and recommend topics intelligently.</p>
     </div>
   </div>
 </section>
 
-<!-- PYQ Demo Section -->
+<!-- === PYQ Demo === -->
 <section id="pyqs">
   <h2>CLAT UG 2025 Demo</h2>
   <div class="card-container">
+
     <div class="card">
       <h3>Q1: The Supreme Court of India was established in which year?</h3>
-      <p>A) 1947<br>B) 1950<br>C) 1952<br>D) 1960</p>
-      <button onclick="checkAnswer(this, 'B')">Select Answer</button>
+      <div class="options">
+        <button onclick="checkAnswer(this, 'B')">A) 1947</button>
+        <button onclick="checkAnswer(this, 'B')">B) 1950</button>
+        <button onclick="checkAnswer(this, 'B')">C) 1952</button>
+        <button onclick="checkAnswer(this, 'B')">D) 1960</button>
+      </div>
     </div>
+
     <div class="card">
       <h3>Q2: The Constitution of India came into effect on?</h3>
-      <p>A) 26 Jan 1950<br>B) 15 Aug 1947<br>C) 26 Nov 1949<br>D) 2 Oct 1950</p>
-      <button onclick="checkAnswer(this, 'A')">Select Answer</button>
+      <div class="options">
+        <button onclick="checkAnswer(this, 'A')">A) 26 Jan 1950</button>
+        <button onclick="checkAnswer(this, 'A')">B) 15 Aug 1947</button>
+        <button onclick="checkAnswer(this, 'A')">C) 26 Nov 1949</button>
+        <button onclick="checkAnswer(this, 'A')">D) 2 Oct 1950</button>
+      </div>
     </div>
+
   </div>
 </section>
 
-<!-- Roadmap Section -->
+<!-- === Roadmap Section === -->
 <section id="roadmap">
   <h2>The Legoal Roadmap</h2>
-  <div class="feature-panel">
+  <div class="roadmap-grid">
     <div class="feature">
       <h3>Platform Beta Launch</h3>
-      <p>Initial release with PYQs and Mock Tests.</p>
+      <p>Initial release with organized PYQs and mock tests.</p>
     </div>
     <div class="feature">
       <h3>Content Expansion</h3>
-      <p>Integrate daily Current Affairs and in-depth Notes.</p>
+      <p>Daily current affairs, detailed notes, and judgment updates.</p>
     </div>
     <div class="feature">
       <h3>Enhanced Learning</h3>
-      <p>Launch Flashcards with multi-lingual support.</p>
+      <p>Flashcards, personalized analytics, and multilingual content.</p>
     </div>
     <div class="feature">
       <h3>Growth & Partnerships</h3>
-      <p>Expand user base and establish collaborations with law colleges.</p>
+      <p>Collaborations with law colleges and education programs.</p>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
-<footer id="footer">
-  <span>Using AI to make law preparation easier</span>
+<!-- === Footer === -->
+<footer>
+  <p><span>Legoal</span> — Using AI to make law preparation simpler, smarter, and more affordable.</p>
 </footer>
 
-
 <script>
-function checkAnswer(button, correctOption) {
-    const card = button.parentElement;
-    const questionText = card.querySelector('h3').innerText;
-    const options = card.querySelector('p').innerHTML.split('<br>');
-    
-    // Clear previous colors
-    card.querySelector('p').innerHTML = '';
-
-    options.forEach(opt => {
-        const letter = opt.trim()[0]; // first character, e.g., "A"
-        const span = document.createElement('span');
-        span.innerHTML = opt + '<br>';
-        span.style.color = (letter === correctOption) ? '#00ff00' : '#ff3b3b';
-        card.querySelector('p').appendChild(span);
-    });
-    
-    // Disable button after answering
-    button.disabled = true;
+function checkAnswer(button, correct) {
+  const parent = button.parentElement;
+  const all = parent.querySelectorAll('button');
+  all.forEach(b => b.disabled = true);
+  all.forEach(b => {
+    const selected = b.innerText.trim()[0];
+    if (selected === correct) b.classList.add('correct');
+    else if (b === button) b.classList.add('wrong');
+  });
 }
 </script>
+</body>
+</html>
