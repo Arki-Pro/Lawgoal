@@ -1,114 +1,250 @@
 <!DOCTYPE html>
-<html lang="en-US">
-    <head>
-        <title>Just a moment...</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-        <meta name="robots" content="noindex,nofollow">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <style>
-            * {
-                box-sizing: border-box;
-                margin: 0;
-                padding: 0
-            }
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legoal: Law Prep, Simplified</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Reset & Base */
+  * {margin:0;padding:0;box-sizing:border-box;}
+  html {scroll-behavior: smooth;}
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0f0f0f;
+    color: #fff;
+    line-height: 1.6;
+  }
+  a {text-decoration:none;color:inherit;}
 
-            html {
-                line-height: 1.15;
-                -webkit-text-size-adjust: 100%;
-                color: #313131;
-                font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
-            }
+  /* Navbar */
+  nav {
+    position: sticky;
+    top:0;
+    background-color: #111;
+    padding: 1rem 2rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:1000;
+    border-bottom: 1px solid #222;
+  }
+  nav .logo {font-weight:700;font-size:1.5rem;color:#ff6ec7;}
+  nav ul {display:flex;gap:2rem;list-style:none;}
+  nav ul li a {font-weight:500;color:#fff;transition:0.3s;}
+  nav ul li a:hover {color:#ff6ec7;}
 
-            body {
-                display: flex;
-                flex-direction: column;
-                height: 100vh;
-                min-height: 100vh
-            }
+  /* Hero Section */
+  header {
+    padding:6rem 2rem 4rem 2rem;
+    text-align:center;
+    max-width:1000px;
+    margin:auto;
+  }
+  header h1 {
+    font-size:3rem;
+    background: linear-gradient(90deg, #ff6ec7, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom:1rem;
+  }
+  header p {font-size:1.2rem;color:#aaa;max-width:700px;margin:1rem auto 0 auto;}
 
-            .main-content {
-                margin: 8rem auto;
-                padding-left: 1.5rem;
-                max-width: 60rem
-            }
+  /* Sections */
+  section {
+    max-width:1000px;
+    margin:4rem auto;
+    padding:0 2rem;
+    opacity:0;
+    transform:translateY(20px);
+    animation:fadeInUp 1s forwards;
+  }
+  section:nth-of-type(2){animation-delay:0.2s;}
+  section:nth-of-type(3){animation-delay:0.4s;}
+  section:nth-of-type(4){animation-delay:0.6s;}
+  section:nth-of-type(5){animation-delay:0.8s;}
+  section h2 {
+    font-size:2rem;
+    background: linear-gradient(90deg,#ff6ec7,#8b5cf6);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin-bottom:2rem;
+    text-align:center;
+  }
 
-            @media (width <=720px) {
-                .main-content {
-                    margin-top: 4rem
-                }
-            }
+  @keyframes fadeInUp {
+    to {opacity:1; transform:translateY(0);}
+  }
 
-            .h2 {
-                line-height: 2.25rem;
-                font-size: 1.5rem;
-                font-weight: 500
-            }
+  /* Cards */
+  .card-container {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:2rem;
+  }
+  .card {
+    background:#111;
+    padding:2rem;
+    border-radius:12px;
+    border:1px solid #222;
+    transition:0.3s;
+  }
+  .card:hover {
+    transform:translateY(-5px);
+    border-color:#ff6ec7;
+    box-shadow:0 8px 20px rgba(255,110,199,0.2);
+  }
+  .card h3 {
+    font-size:1.3rem;
+    margin-bottom:1rem;
+    color:#ff6ec7;
+  }
+  .card p {color:#aaa;}
+  .card button {
+    margin-top:1rem;
+    padding:0.5rem 1rem;
+    border:none;
+    border-radius:6px;
+    background:#ff6ec7;
+    color:#fff;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+  }
+  .card button:hover {background:#8b5cf6;}
 
-            @media (width <=720px) {
-                .h2 {
-                    line-height: 1.5rem;
-                    font-size: 1.25rem
-                }
-            }
+  /* Feature Panels */
+  .feature-panel {
+    display:flex;
+    flex-wrap:wrap;
+    gap:2rem;
+    margin-top:2rem;
+  }
+  .feature {
+    flex:1 1 300px;
+    background:#111;
+    border:1px solid #222;
+    border-radius:12px;
+    padding:2rem;
+    transition:0.3s;
+  }
+  .feature:hover {border-color:#ff6ec7;box-shadow:0 8px 20px rgba(255,110,199,0.2);}
+  .feature h3 {color:#ff6ec7;margin-bottom:1rem;}
+  .feature p {color:#aaa;}
 
-            #challenge-error-text {
-                background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0ibm9uZSI+PHBhdGggZmlsbD0iI0IyMEYwMyIgZD0iTTE2IDNhMTMgMTMgMCAxIDAgMTMgMTNBMTMuMDE1IDEzLjAxNSAwIDAgMCAxNiAzbTAgMjRhMTEgMTEgMCAxIDEgMTEtMTEgMTEuMDEgMTEuMDEgMCAwIDEtMTEgMTEiLz48cGF0aCBmaWxsPSIjQjIwRjAzIiBkPSJNMTcuMDM4IDE4LjYxNUgxNC44N0wxNC41NjMgOS41aDIuNzgzem0tMS4wODQgMS40MjdxLjY2IDAgMS4wNTcuMzg4LjQwNy4zODkuNDA3Ljk5NCAwIC41OTYtLjQwNy45ODQtLjM5Ny4zOS0xLjA1Ny4zODktLjY1IDAtMS4wNTYtLjM4OS0uMzk4LS4zODktLjM5OC0uOTg0IDAtLjU5Ny4zOTgtLjk4NS40MDYtLjM5NyAxLjA1Ni0uMzk3Ii8+PC9zdmc+");
-                background-repeat: no-repeat;
-                background-size: contain;
-                padding-left: 34px
-            }
+  /* Footer */
+  footer {
+    text-align:center;
+    padding:3rem 2rem;
+    border-top:1px solid #222;
+    color:#aaa;
+    margin-top:4rem;
+  }
+  footer span{color:#ff6ec7;font-weight:600;}
+</style>
+</head>
+<body>
 
-            @media (prefers-color-scheme: dark) {
-                body {
-                    background-color: #222;
-                    color: #d9d9d9
-                }
-            }
-        </style>
-        <meta http-equiv="refresh" content="360">
-    </head>
-    <body>
-        <div class="main-wrapper" role="main">
-            <div class="main-content">
-                <noscript>
-                    <div class="h2">
-                        <span id="challenge-error-text">Enable JavaScript and cookies to continue</span>
-                    </div>
-                </noscript>
-            </div>
-        </div>
-        <script>
-            (function() {
-                window._cf_chl_opt = {
-                    cvId: '3',
-                    cZone: 'gamma.app',
-                    cType: 'managed',
-                    cRay: '992254400bc40fe5',
-                    cH: 'IBVrW9iH5dL91gD4UYnvPO.y4YQwq67EH9p4Skcr5ZU-1761066214-1.2.1.1-ny.P0Veladx2BiWD5VWzuEOmiwCpfsyUOwBEGtMWqIFmsCtvhaYLxs681Dg.b5TG',
-                    cUPMDTk: "\/docs\/Legoal-Law-Prep-Simplified-3flsx9bfo2tnoeh?__cf_chl_tk=qqo_9xIjs5Vk_lKuqDvBoitTk59viSOxo_EWs.rjKbw-1761066214-1.0.1.1-EHclLsdYRvSF8I295BEkfvhD0kNM47FAvnFA7fnlcMo",
-                    cFPWv: 'g',
-                    cITimeS: '1761066214',
-                    cTplC: 0,
-                    cTplV: 5,
-                    cTplB: 'cf',
-                    fa: "\/docs\/Legoal-Law-Prep-Simplified-3flsx9bfo2tnoeh?__cf_chl_f_tk=qqo_9xIjs5Vk_lKuqDvBoitTk59viSOxo_EWs.rjKbw-1761066214-1.0.1.1-EHclLsdYRvSF8I295BEkfvhD0kNM47FAvnFA7fnlcMo",
-                    md: 'ocjMXkTjkknVNJ1ShI3Zsu1WhvDSDpmHmfzuhkYQ6BE-1761066214-1.2.1.1-N9j.sxwYie2A5_tZD3OCYxTG03dTDVhSt5g86Q5L.APKdbLD0jqvw8UFEoQlR4LPV21laL18yqZr5giIIVIQX6trT5aQSMWNNlKIhYmpZOAkOFhoIO7sGg1m7GevYXybWPLlhiAjaBIe_F_BhCNH2Ig9zFze.DHlduy5VBINmctamvHYaJByIEzJxa2W8hizKqT_lplAEMKksa3xU_fQPeZnvHLeBzA5vc.rHwcOI5c9JsZNEQQKtkGbuYeIHFplsr98kU6_1XcksIvr.ZllEj7HieHL_2QTQTJ2WD8D0Kme4OQYBssbRVXOzy12Fho_1TftVz7dZmtVYhnZGbLVYnsu.Zfb8GHo3JrUje.M3Xqf9KXvihkPkT2bMujxng1a6toPp7pQ8ZSEO7u0NbQuRlt41CEEoumpI1us8B0KrG_ZGyoftkx5CxHylkGjWHcC7CDwZXWTrjAuUAYEeYZxOry6ev6sjIL6h61aJkJefhSHni969Eb0ytwWFokN6.2Gzjpjy9kTveTnHISa3ILwMUshSw01ThqcwXRO_3BX7Vse9ysyhNjdOAKsJLAaDWbkSICbkLIT6pAWFxJIHp5qO4mLBkEPM9zkz7gmlok92NQMrzaPjPfriBg0kma1xfv_3UV9uJbl3_Kypg19pfwmbweJ31H1aeSPQLvJ6INoiriw.yrC0D_PLsuwCnrJ.TRcUhkE8h7xlrJ9L4pbYjZPiWgYtzEmINZpZ_Eq.qrBYpIHHmpSvOmUByF7gBM3XdZDIkfx4lWBvwi3vZGXDeZn69PNSVb2U5.Rdgt3hs.h0W1PJ3zz_x_utSURHY5s7nQBl5wEqC.fQMqoSg4PqjbsHJTvxe_OZEUIP_14EPfm82zGEyLNKW_J.681mBhIqjGDKLuBU.8aKzQsGNkZkIf_MfvJy4EIs3JjWjZpnnZGCc9.aoEIf2_vRat61hEscr99cwgHhtI8vrsVMa70n9MVp3gcxSkcyns.xu22vJUvy00',
-                    mdrd: 'h.5JkuKM0K0RQNrfrxv7rsy7P0Iuj8P4xnrQcjLUM6A-1761066214-1.2.1.1-RicXREwke8vcVUjTvzUHghOnidoL9sGRG_ZV8sjaoJJs2Cb_ScUg57d_KZ8Qc5qWonyoLDrJoyskWWEJqjX331wZWnFq9jZ8tfgVCcNi6L_OQRvF14sOaNRFZ53Oa6U_zyjB6NPpZUxFE_v.QYfAGo_BzzV.CnVZrNip_ut.1xzt8ZpWKUy8LCJOeL.n0nNvqFmXrg40OHuUmEZ9x2G.itua724AWVjAmvFuNKlDue0txsKawoffjXLmlbd.NebrU2nTmKDDn0pIfij4jc0EGWMCwLUOaHMlVC_zgIEl730s6Z5PNHmxTvb6TcVN0IIGVfHuwjbFge5Yjixgn9hvUxja6ecneB4e1FIqe7lPHQm.ybv3xBfx_WBswLVd7CmK8R06T7fm53qo_UO9drAW_E5rf.zRsc86BQfK2lZ2UgUbcGXAjuaYvqtgoxK9GlHX73bFKSdVyrVhGKGqW6FDhSW0dpxxzkTv5mUbne83MXutTRZrrsJMg2vr0YQH87ltgG88NEr6ApEwZYv6Ql9a.5DrVTioN0qf3CghDRCKSd81krYeNkS9wTQIS6c58Tq_Hg3fyXLxF4OJkKpXoj5msVO16ecmlM_MWBU23bM2PGdIzZV94KYorZVWkNmWN3lUaFXlAKtem_DfysNvqf3RhVQ3rkogdVcfW1hqAxFp8CMiUKP4.BfLWrjjKV3JXWtt_tNyORdrU6t9_ZI5fOlqtX_NGBhZXJkqokm6fWFA6FXE2v9ui5TON9HioCHxtinlFjn9poDHgxSWuDqVDRAN61Pa.mR57nzJtf7ATAS9pLX606UHH1kqa7jC0dC2GbTlAU4kiaKCZcWjK.2CP0hfuM.AJsbKRWXa0Dj5Mvko22GSk55..NIr3I9eVXs1cKvIOFVeIV1YAgUnDKiU70oQ1oGAdcQOumhZSxAQsGoweUgOwkBDPQxegJHaCMsJsQZ6Hn6BeUVPBS8BRNZWY3oBrnh5icCXUPPTfu.dQ_4OR0zlyswSADrKYnDYvRSA6kGA0N1mfgYQQe5SfUR2NRpquib1DE0v9dsaS.5a6mYoh2DyHbTlj_sHGuevoIinAZwuV67UTn35VK9XhZ.ueAb831Ytv52rz6VDWrM9FjDrhfOGRp1OcMm5umg8UaLTFEin.0ug8HHNG5BXolF9G8I8zmS2a7Zx62Zn9F4VT1tDgn.XLX97c8E3Um4.7PRhYgt6xqI4WbC1jGqS_mD9uFVDSWglT.suB7_mrlDeoLWbnzK72XJVYj0hr1p0wD1j6FqBWXu0vimOV0kA23I38OBZXHCv9iQHwj9arFPERXtn2PHAdTFgda_hUvAxde4XPtzlTN3pyWKQcBCJTSym1cGZWegB4WojKS5aiYjxLZfQ1xEw29D2XVo7F29VbO3MMc5TdBU4qu6oZJY3oAXrDumNSOkT_AzVKMzNEz8sRoqGRJiUasybnDwD06LWclF0TF2IPEZT6hYJeHK6Z1pi6VZFbad6fy5nk6_XErzgESD0IokUV_1dhnQFUoVMZ1RRJAZejiBM5xpXATEQnkJLWAPwV2jmBpsxTF7ltBEnPnTSYuIsr1Ljir5s73qmdA0pijiT7fmODVPzOuNeT8UzK1ooI9ti6rOq2A9t5mG4s2l1LXXd6Xzz3ffjlDe6iGdU2c4WOaIZF3eRflmxIu9RPSvHjL1x3jbjCbBrJRAgI5VzP1sDoVG7jfaNi1xPfvPmyzFgZ.vwljWOlivnlydfmP_ufL.zwSZzzZVV3yxchRN9lDh.xldC.W7cT_ZUOLKFONZC1ivbmzBXkEuCotyBuKDrae7csrnj3aa5RnCJxbaGc5AAie7GOz0YNoB8UNjoza4ovI_N1k2NcrLZGiUU_0knyebJbdKHNWj7VGDA8j2RvQ.UQIua3jr4PSmqnvE5JovEH0DvyuMXU1CklqKSXReoQwpzsD7hh_4KrA9QiTXmjXVyo8gjecaauqgBoAB_MOgK7bJ.q8do769WT.rDYDpcuoKzbB7vt2tjEhxsU3qpcwLI2ph_LBKsG1kj9BAigJVAciDMdZxyyTmaxt.vDHJt2BXuFZePLKLPxfRUFD1IUaX9JuBd3D8MlNOU0r7hPbhKUDeh3Ll5kdXcPBob6LVdUp1w49tp48QrC_s_W7YIWI5O.IgPf85C5tUZorLn_vC5GgJgD_1u.u2WANs4Xer56hY6F2U1uwEdMJjT6s2k_KndzcQOHyeHtAaYU4mKl71k2AognUgkoUoCOev63ck4wBnyHU7sBxGu8mgRbHQwrPSFG30N3ZEv4hscJgiMpogbyDPKXG_7DUvbtcwVs4WAgoRX.Pu4pNcrtpo5_.IFe9bjDaqOVJ.9cZ01Fsh5z7r4',
-                };
-                var a = document.createElement('script');
-                a.src = '/cdn-cgi/challenge-platform/h/g/orchestrate/chl_page/v1?ray=992254400bc40fe5';
-                window._cf_chl_opt.cOgUHash = location.hash === '' && location.href.indexOf('#') !== -1 ? '#' : location.hash;
-                window._cf_chl_opt.cOgUQuery = location.search === '' && location.href.slice(0, location.href.length - window._cf_chl_opt.cOgUHash.length).indexOf('?') !== -1 ? '?' : location.search;
-                if (window.history && window.history.replaceState) {
-                    var ogU = location.pathname + window._cf_chl_opt.cOgUQuery + window._cf_chl_opt.cOgUHash;
-                    history.replaceState(null, null, "\/docs\/Legoal-Law-Prep-Simplified-3flsx9bfo2tnoeh?__cf_chl_rt_tk=qqo_9xIjs5Vk_lKuqDvBoitTk59viSOxo_EWs.rjKbw-1761066214-1.0.1.1-EHclLsdYRvSF8I295BEkfvhD0kNM47FAvnFA7fnlcMo" + window._cf_chl_opt.cOgUHash);
-                    a.onload = function() {
-                        history.replaceState(null, null, ogU);
-                    }
-                }
-                document.getElementsByTagName('head')[0].appendChild(a);
-            }());
-        </script>
-    </body>
-</html>
+<!-- Navbar -->
+<nav>
+  <div class="logo">Legoal</div>
+  <ul>
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#footer">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero Section -->
+<header id="hero">
+  <h1>Legoal: Law Prep, Simplified</h1>
+  <p>One Platform. All Law Exams. No Clutter. <br> <span style="color:#ff6ec7;">AI-powered learning</span> to make law preparation easier, efficient, and focused.</p>
+</header>
+
+<!-- Aspirant Challenge Section -->
+<section id="features">
+  <h2>The Aspirant's Challenge</h2>
+  <div class="feature-panel">
+    <div class="feature">
+      <h3>Scattered Resources</h3>
+      <p>Previous year questions (PYQs) are scattered across PDFs, Telegram groups, and coaching sites. Students waste time searching instead of studying.</p>
+    </div>
+    <div class="feature">
+      <h3>Generic Prep Apps</h3>
+      <p>Most apps provide irrelevant content. Law aspirants need focused material tailored for Judiciary, AIBE, and Clerkship exams.</p>
+    </div>
+    <div class="feature">
+      <h3>Legoal Solution</h3>
+      <p>Legoal centralizes PYQs, mock tests, notes, and daily updates in one clean interface with AI-driven recommendations.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PYQ Demo Section -->
+<section id="pyqs">
+  <h2>CLAT UG 2025 Demo</h2>
+  <div class="card-container">
+    <div class="card">
+      <h3>Q1: The Supreme Court of India was established in which year?</h3>
+      <p>A) 1947<br>B) 1950<br>C) 1952<br>D) 1960</p>
+      <button onclick="checkAnswer(this, 'B')">Select Answer</button>
+    </div>
+    <div class="card">
+      <h3>Q2: The Constitution of India came into effect on?</h3>
+      <p>A) 26 Jan 1950<br>B) 15 Aug 1947<br>C) 26 Nov 1949<br>D) 2 Oct 1950</p>
+      <button onclick="checkAnswer(this, 'A')">Select Answer</button>
+    </div>
+  </div>
+</section>
+
+<!-- Roadmap Section -->
+<section id="roadmap">
+  <h2>The Legoal Roadmap</h2>
+  <div class="feature-panel">
+    <div class="feature">
+      <h3>Platform Beta Launch</h3>
+      <p>Initial release with PYQs and Mock Tests.</p>
+    </div>
+    <div class="feature">
+      <h3>Content Expansion</h3>
+      <p>Integrate daily Current Affairs and in-depth Notes.</p>
+    </div>
+    <div class="feature">
+      <h3>Enhanced Learning</h3>
+      <p>Launch Flashcards with multi-lingual support.</p>
+    </div>
+    <div class="feature">
+      <h3>Growth & Partnerships</h3>
+      <p>Expand user base and establish collaborations with law colleges.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="footer">
+  <span>Using AI to make law preparation easier</span>
+</footer>
+
+
+<script>
+function checkAnswer(button, correctOption) {
+    const card = button.parentElement;
+    const questionText = card.querySelector('h3').innerText;
+    const options = card.querySelector('p').innerHTML.split('<br>');
+    
+    // Clear previous colors
+    card.querySelector('p').innerHTML = '';
+
+    options.forEach(opt => {
+        const letter = opt.trim()[0]; // first character, e.g., "A"
+        const span = document.createElement('span');
+        span.innerHTML = opt + '<br>';
+        span.style.color = (letter === correctOption) ? '#00ff00' : '#ff3b3b';
+        card.querySelector('p').appendChild(span);
+    });
+    
+    // Disable button after answering
+    button.disabled = true;
+}
+</script>
